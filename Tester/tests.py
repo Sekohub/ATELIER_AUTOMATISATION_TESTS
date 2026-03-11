@@ -25,8 +25,6 @@ def test_past_frames(response):
 
 def test_time_type(response):
 
-    def test_time_type(response):
-
     radar = response["json"].get("radar", {})
     past = radar.get("past", [])
 
