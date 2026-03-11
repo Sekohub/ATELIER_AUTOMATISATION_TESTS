@@ -5,9 +5,11 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 from client import call_api
 from tests import *
-from storage import save_run
+from storage import save_run, init_db 
 
 def run():
+
+    init_db()
 
     response = call_api()
 
@@ -24,3 +26,6 @@ def run():
     save_run(response["status"], response["latency"])
 
     return results
+
+if __name__ == "__main__":
+    run()
