@@ -18,11 +18,19 @@ def test_radar_field(response):
 
 def test_past_frames(response):
 
-    return "past" in response["json"]["radar"]
+    radar = response["json"].get("radar", {})
+
+    return "past" in radar
 
 
 def test_time_type(response):
 
-    frame = response["json"]["radar"]["past"][0]
+    def test_time_type(response):
 
-    return isinstance(frame["time"], int)
+    radar = response["json"].get("radar", {})
+    past = radar.get("past", [])
+
+    if not past:
+        return False
+
+    return isinstance(past[0].get("time"), int)
