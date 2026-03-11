@@ -23,9 +23,9 @@ def dashboard():
 
     return render_template(
         "dashboard.html",
-        runs=runs,
-        latencies=latencies,
-        ids=ids
+          runs=runs,
+         latencies=latencies,
+         ids=ids
     )
 
 @app.route("/run")
