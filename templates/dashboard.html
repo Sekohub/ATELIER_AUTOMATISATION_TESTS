@@ -8,23 +8,19 @@ body {
 }
 
 .run-btn {
-    background: linear-gradient(135deg,#4F9CF9,#6C63FF);
+    background: linear-gradient(135deg,#4F9CF9,#1E3A8A);
     border: none;
     padding: 12px 20px;
     border-radius: 8px;
     color: white;
     font-weight: bold;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.run-btn:hover {
-    opacity: 0.85;
-}
-
-canvas {
-    max-width: 900px;
-    margin-top: 30px;
+.chart-container {
+    width: 650px;
+    height: 350px;
 }
 
 </style>
@@ -35,7 +31,9 @@ canvas {
 <button class="run-btn">Run Test</button>
 </a>
 
+<div class="chart-container">
 <canvas id="latencyChart"></canvas>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -44,7 +42,11 @@ canvas {
 const labels = {{ ids | tojson }};
 const data = {{ latencies | tojson }};
 
-const ctx = document.getElementById('latencyChart');
+const ctx = document.getElementById('latencyChart').getContext('2d');
+
+const gradient = ctx.createLinearGradient(0,0,0,400);
+gradient.addColorStop(0,"#60A5FA");
+gradient.addColorStop(1,"#1E3A8A");
 
 new Chart(ctx, {
     type: 'line',
@@ -53,25 +55,35 @@ new Chart(ctx, {
         datasets: [{
             label: 'Latency (s)',
             data: data,
-            borderColor: '#4F9CF9',
-            backgroundColor: 'rgba(79,156,249,0.2)',
-            tension: 0.3
+            borderColor: "#60A5FA",
+            backgroundColor: gradient,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 5,
+            pointBackgroundColor: "#93C5FD"
         }]
     },
     options: {
+        responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
-                labels: { color: "white" }
+                labels: {
+                    color: "white"
+                }
             }
         },
         scales: {
             x: {
-                ticks: { color: "white" }
+                grid: { color: "#1f2937" },
+                ticks: { color: "#9CA3AF" }
             },
             y: {
-                ticks: { color: "white" }
+                grid: { color: "#1f2937" },
+                ticks: { color: "#9CA3AF" }
             }
         }
     }
 });
+
 </script>
