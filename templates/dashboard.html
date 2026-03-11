@@ -1,11 +1,18 @@
-RainViewer API Monitoring
+<h1>RainViewer API Monitoring</h1>
 
-Dernier status : 200
-Latence : 0.32 s
-Disponibilité : 100 %
+<table>
+<tr>
+<th>Status</th>
+<th>Latency</th>
+</tr>
 
-Tests :
-✓ Status OK
-✓ Radar présent
-✓ Frames présentes
-✓ Time field présent
+{% for r in runs %}
+
+<tr>
+<td>{{ r[1] }}</td>
+<td>{{ r[2] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
