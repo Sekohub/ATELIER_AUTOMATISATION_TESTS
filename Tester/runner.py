@@ -8,10 +8,11 @@ def run():
     results = {
         "status": response["status"],
         "latency": response["latency"],
-        "test_status": test_status(response),
-        "test_radar": test_radar_exists(response),
-        "test_frames": test_past_frames(response),
-        "test_time": test_time_field(response)
+        "status_test": test_status(response),
+        "content_type_test": test_content_type(response),
+        "radar_test": test_radar_field(response),
+        "frames_test": test_past_frames(response),
+        "time_test": test_time_type(response)
     }
 
     return results
