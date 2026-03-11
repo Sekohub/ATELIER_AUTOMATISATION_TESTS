@@ -1,6 +1,8 @@
+import os 
 import sqlite3
 
-DB = "runs.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB = os.path.join(BASE_DIR, "runs.db")
 
 def init_db():
 
