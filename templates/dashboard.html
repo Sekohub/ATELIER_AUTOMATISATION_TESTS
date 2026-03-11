@@ -1,18 +1,77 @@
+<style>
+
+body {
+    background: #0b1220;
+    color: white;
+    font-family: system-ui;
+    padding: 40px;
+}
+
+.run-btn {
+    background: linear-gradient(135deg,#4F9CF9,#6C63FF);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.run-btn:hover {
+    opacity: 0.85;
+}
+
+canvas {
+    max-width: 900px;
+    margin-top: 30px;
+}
+
+</style>
+
 <h1>RainViewer API Monitoring</h1>
 
-<table>
-<tr>
-<th>Status</th>
-<th>Latency</th>
-</tr>
+<a href="/run">
+<button class="run-btn">Run Test</button>
+</a>
 
-{% for r in runs %}
+<canvas id="latencyChart"></canvas>
 
-<tr>
-<td>{{ r[1] }}</td>
-<td>{{ r[2] }}</td>
-</tr>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{% endfor %}
+<script>
 
-</table>
+const labels = {{ ids | tojson }};
+const data = {{ latencies | tojson }};
+
+const ctx = document.getElementById('latencyChart');
+
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Latency (s)',
+            data: data,
+            borderColor: '#4F9CF9',
+            backgroundColor: 'rgba(79,156,249,0.2)',
+            tension: 0.3
+        }]
+    },
+    options: {
+        plugins: {
+            legend: {
+                labels: { color: "white" }
+            }
+        },
+        scales: {
+            x: {
+                ticks: { color: "white" }
+            },
+            y: {
+                ticks: { color: "white" }
+            }
+        }
+    }
+});
+</script>
