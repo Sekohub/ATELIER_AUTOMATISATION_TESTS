@@ -3,8 +3,8 @@ import os
 
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-from client import call_api
-from tests import *
+from Tester.client import call_api
+from Tester.tests import *
 from storage import save_run, init_db 
 
 def run():
