@@ -1,5 +1,5 @@
-from tester.client import call_api
-from tester.tests import *
+from client import call_api
+from tests import *
 from storage import save_run
 
 def run():
