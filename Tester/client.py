@@ -7,12 +7,13 @@ def call_api():
 
     start = time.time()
 
-    r = requests.get(API_URL, timeout=5)
+    r = requests.get(API_URL, timeout=3)
 
     latency = time.time() - start
 
     return {
         "status": r.status_code,
         "latency": latency,
-        "json": r.json()
+        "json": r.json(),
+        "headers": r.headers
     }
