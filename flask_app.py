@@ -1,9 +1,9 @@
 from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from storage import list_runs
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
 from werkzeug.utils import secure_filename
-from storage import list_runs
 import sqlite3
 
 app = Flask(__name__)
