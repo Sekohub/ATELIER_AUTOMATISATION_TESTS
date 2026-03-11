@@ -8,7 +8,7 @@ from tests import *
 from storage import save_run, init_db 
 
 def run():
-
+    print("RUN OK")
     init_db()
 
     response = call_api()
@@ -22,8 +22,6 @@ def run():
         "frames_test": test_past_frames(response),
         "time_test": test_time_type(response)
     }
-
-    print(results)
 
     save_run(response["status"], response["latency"])
 
