@@ -23,8 +23,8 @@ def dashboard():
 
     return render_template(
         "dashboard.html",
-        runs=runs
-        latencies=latencies
+        runs=runs,
+        latencies=latencies,
         ids=ids
     )
 
