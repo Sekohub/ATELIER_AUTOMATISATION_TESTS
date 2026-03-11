@@ -1,6 +1,6 @@
 from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
 from Tester.runner import run
-from storage import list_runs
+from storage import list_runs, init_db
 from flask import render_template
 from flask import json
 from urllib.request import urlopen
@@ -15,7 +15,7 @@ def consignes():
 
 @app.route("/dashboard")
 def dashboard():
-
+    init_db()
     runs = list_runs()
 
     latencies = [r[2] for r in runs]
