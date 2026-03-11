@@ -23,6 +23,8 @@ def run():
         "time_test": test_time_type(response)
     }
 
+    print(results)
+
     save_run(response["status"], response["latency"])
 
     return results
