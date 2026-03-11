@@ -1,4 +1,5 @@
 from flask import Flask, render_template_string, render_template, jsonify, request, redirect, url_for, session
+from Tester.runner import run
 from storage import list_runs
 from flask import render_template
 from flask import json
@@ -17,10 +18,22 @@ def dashboard():
 
     runs = list_runs()
 
+    latencies = [r[2] for r in runs]
+    ids = [r[0] for r in runs]
+
     return render_template(
         "dashboard.html",
         runs=runs
+        latencies=latencies
+        ids=ids
     )
+
+@app.route("/run")
+def run_test():
+
+    run()
+
+    return redirect(url_for("dashboard"))
 
 if __name__ == "__main__":
     # utile en local uniquement
