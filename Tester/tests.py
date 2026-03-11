@@ -4,7 +4,9 @@ def test_status(response):
 
 def test_content_type(response):
 
-    return "application/json" in response["headers"]["Content-Type"]
+    content_type = response["headers"].get("Content-Type", "")
+
+    return "application/json" in content_type
 
 
 def test_radar_field(response):
