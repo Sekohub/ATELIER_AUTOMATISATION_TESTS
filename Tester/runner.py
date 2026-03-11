@@ -1,5 +1,6 @@
 from tester.client import call_api
 from tester.tests import *
+from storage import save_run   
 
 def run():
 
@@ -15,4 +16,11 @@ def run():
         "time_test": test_time_type(response)
     }
 
+    # sauvegarde dans SQLite
+    save_run(response["status"], response["latency"])
+
     return results
+
+
+if __name__ == "__main__":
+    run()
