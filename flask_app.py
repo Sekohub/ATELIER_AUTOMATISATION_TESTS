@@ -11,7 +11,7 @@ app = Flask(__name__)
 def consignes():
      return render_template('consignes.html')
 
-@app.route("/")
+@app.route("/dashboard")
 def dashboard():
 
     runs = list_runs()
